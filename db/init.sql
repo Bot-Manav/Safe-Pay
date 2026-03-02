@@ -1,0 +1,33 @@
+-- Initialization script for Postgres (runs only on first container start)
+-- Enable pgcrypto to allow gen_random_uuid() for UUID defaults if needed
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
+-- Optional: You can add explicit table creation here if you prefer to manage schema
+-- The application currently uses Hibernate `spring.jpa.hibernate.ddl-auto=update`
+-- which will create/update the schema automatically when the backend runs.
+
+-- Example DDL (commented out):
+-- CREATE TABLE users (
+--   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+--   name varchar(255),
+--   email varchar(255),
+--   balance double precision NOT NULL
+-- );
+--
+-- CREATE TABLE transactions (
+--   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+--   sender_id uuid,
+--   receiver_id uuid,
+--   amount double precision NOT NULL,
+--   status varchar(50),
+--   created_at timestamp,
+--   timeout_at timestamp
+-- );
+--
+-- CREATE TABLE ledger (
+--   id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+--   transaction_id uuid,
+--   account_id uuid,
+--   entry_type varchar(50),
+--   amount double precision
+-- );
